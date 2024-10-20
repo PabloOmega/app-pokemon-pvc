@@ -1,0 +1,50 @@
+<div class="container-fluid text-center">
+    <div>
+        <h1>Pokemon de la Semana</h1>
+        <img [src]="pokemons[0].sprites.front_default" alt="Pokemon de la semana">
+        <p>{{pokemons[0].name + ' - ' + pokemons[0].weight + ' g'}}</p>
+    </div>
+    <div id="carouselExampleAutoplaying" class="container text-center" style="margin-inline-start: auto; width: 50%;">
+        <h1>Carrusel</h1>
+        <div class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div 
+                    *ngFor="let pokemon of pokemons" 
+                    [class]="pokemon.id == 1 ? 'carousel-item active' : 'carousel-item'" 
+                    data-bs-interval="500">
+                    <img [src]="pokemon.sprites.front_default" class="d-block w-100" [alt]="pokemon.name">
+                    <h5 *ngIf="pokemon.weight > 100; else elseTemplate">Es pesado</h5>
+                    <ng-template #elseTemplate>
+                        <h5>Es liviano</h5>
+                    </ng-template>
+                    <!-- <div [ngSwitch]="pokemon.type">
+                        <span *ngSwitchCase="'1'">Eléctrico</span>
+                        <span *ngSwitchCase="'2'">Planta</span>
+                        <span *ngSwitchCase="'3'">Fuego</span>
+                        <span *ngSwitchDefault>Desconocido</span>
+                    </div> -->
+                </div>
+
+                <!-- <div class="carousel-item active" data-bs-interval="500">
+                    <img [src]="pokemons[0].url" class="d-block w-100" [alt]="pokemons[0].name">
+                </div>
+                <div class="carousel-item" data-bs-interval="500">
+                    <img [src]="pokemons[1].url" class="d-block w-100" [alt]="pokemons[1].name">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img [src]="pokemons[2].url" class="d-block w-100" [alt]="pokemons[2].name">
+                </div> -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>

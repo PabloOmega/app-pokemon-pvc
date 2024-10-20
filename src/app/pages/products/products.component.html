@@ -1,0 +1,18 @@
+<div class="container-fluid justify-content-center mt-3">
+    <div class="d-flex flex-wrap justify-content-evenly" style="gap: 20px;">
+        <div 
+            *ngFor="let product of products" 
+            class="d-inline-block card text-center h-auto" 
+            style="width: 18rem; padding: 10px;"
+        >
+            <img [src]="product.image" class="card-img-top" [alt]="product.name" 
+                style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <h5 class="card-title price">$ {{product.price.toFixed(2)}}</h5>
+                <p class="card-text">{{product.description}}</p>
+                <a class="btn btn-primary">Añadir al carrito</a>
+            </div>
+        </div>
+    </div>
+</div>

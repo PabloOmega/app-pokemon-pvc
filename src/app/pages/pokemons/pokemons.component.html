@@ -1,0 +1,39 @@
+<button type="button" class="btn btn-primary" (click)="imprimirMensaje()">
+    Imprimir Mensaje
+</button>
+<nav>
+    <ul class="pagination justify-content-center flex-wrap m-3">
+        <li [class]="currentPage == 1 ? 'page-item disabled' : 'page-item'" style="cursor: pointer;">
+            <a class="page-link" (click)="onClickNextPrevious(true)">Previous</a>
+        </li>
+        <li *ngFor="let page of pages" class="page-item" style="cursor: pointer;">
+            <a [class]="currentPage == page ? 'page-link active' : 'page-link'" (click)="onClickPage(page)">
+                {{page}}                
+            </a></li>
+            <li [class]="currentPage == pages.length ? 'page-item disabled' : 'page-item'" style="cursor: pointer;">
+            <a class="page-link" (click)="onClickNextPrevious(false)">Next</a>
+        </li>
+    </ul>
+</nav>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Altura</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pokemon of pokemons" style="cursor: pointer;" (click)="abrirPokemon(pokemon.id)">
+            <th scope="row">{{pokemon.id}}</th>
+            <td>{{pokemon.name}}</td>
+            <td>{{pokemon.height}}</td>
+            <td>{{pokemon.weight}}</td>
+            <td>{{pokemon.types[0].type.name}}</td>
+            <td><img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" style="width: 200px;" /></td>
+        </tr>
+    </tbody>
+</table>

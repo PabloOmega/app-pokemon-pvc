@@ -1,0 +1,45 @@
+<div class="container justify-content-center">
+    <h1 class="text-center">Todos</h1>
+    <form class="mb-3" [formGroup]="form" (ngSubmit)="createTodo()">
+        <div class="row mb-3">
+            <label for="title" class="col-sm-2 col-form-label">Título</label>
+            <div class="col-sm-10">
+                <input 
+                    type="text" 
+                    id="title" 
+                    formControlName="title" 
+                    placeholder="Título de la tarea"
+                    required
+                    >                 
+            </div>
+        </div>   
+        <div class="row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="completed" formControlName="completed">
+                    <label class="form-check-label" for="completed">
+                        Completada?
+                    </label>
+                </div>
+            </div>
+        </div>         
+        <button type="submit" class="btn btn-primary">Crear Todo</button>
+    </form>
+
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" *ngFor="let todo of todos">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{todo.title}}</h5>
+            </div>
+            <p class="mb-1">{{todo.completed ? "Completado": "Pendiente"}}</p>
+            <div>
+                <button type="button" class="btn btn-info" style="margin-right: 10px;" (click)="updateTodo(todo.id!)">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteTodo(todo.id!)">
+                    Eliminar
+                </button>
+            </div>
+        </a>
+    </div>
+</div>
